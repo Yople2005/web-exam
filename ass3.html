@@ -2,103 +2,87 @@
 <html>
 
 <head>
-    <title>Assignment III</title>
+    <title>Registration Form</title>
+    <style>
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea {
+            width: 300px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        select,
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin: 5px;
+        }
+    </style>
 </head>
 
 <body>
-    <form action="" method="POST" enctype="multipart/form-data">
-        <label for="firstname">Firstname :</label>
-        <input type="text" name="firstname" id="firstname"/>
-
-        <br/><br/>
-
-        <label for="lastname">Lastname :</label>
-        <input type="text" name="lastname" id="lastname"/>
-
-        <br/><br/>
-
-        <label for="course">Course :</label>
-        <select name="course" id="course">
-            <option selected disabled>course</option>
-            <option value="mya">Myanmar</option>
-            <option value="eng">English</option>
-            <option value="math">Math</option>
-            <option value="che">Chemistry</option>
-            <option value="phy">Physics</option>
-            <option value="it">IT</option>
+    <form onsubmit="return validateForm()">
+        <label for="firstname">Firstname:
+            <input type="text" id="firstname" name="firstname"></label>
+        <label for="lastname">Lastname:
+            <input type="text" id="lastname" name="lastname"></label>
+        <label for="course">Course:</label>
+        <select id="course" name="course">
+            <option value="">Course</option>
+            <option value="B.Tech">B.Tech</option>
+            <option value="M.Tech">M.Tech</option>
+            <option value="MBA">MBA</option>
         </select>
-
-        <br/><br/>
-
-        <label>Gender :</label>
-
-        <br/><br/>
-
-        <input type="radio" name="gender" id="genderm" />
-        <label for="genderm">Male</label>
-
-        <br/><br/>
-
-        <input type="radio" name="gender" id="genderf" checked />
-        <label for="genderf">Female</label>
-
-        <br/><br/>
-
-        <input type="radio" name="gender" id="gendero" />
-        <label for="gendero">Other</label>
-
-        <br/><br/>
-
-        <label>Hobbies :</label>
-
-        <br/><br/>
-
-        <input type="checkbox" name="hobby" id="hobbyp" />
-        <label for="hobbyp">Programming</label>
-
-        <br/><br/>
-
-        <input type="checkbox" name="hobby" id="hobbyc" />
-        <label for="hobbyc">Cricket</label>
-
-        <br/><br/>
-
-        <input type="checkbox" name="hobby" id="hobbyf" />
-        <label for="hobbyf">Football</label>
-
-        <br/><br/>
-
-        <input type="checkbox" name="hobby" id="hobbyr" />
-        <label for="hobbyr">Reading Novel</label>
-
-        <br/><br/>
-        
-        <label for="phone">Phone :</label>
-        <input type="phone" name="phone" id="phone" size="15" />
-
-        <br/><br/>
-
-        <label for="address">Address :</label>
-
-        <br/><br/>
-
-        <textarea name="address" id="address"></textarea>
-
-        <br/><br/>
-
-        <label for="email">Email :</label>
-        <input type="email" name="email" id="email" />
-
-        <br/><br/>
-
-        <label for="password">Password :</label>
-        <input type="password" name="password" id="password" />
-
-        <br/><br/>
-
-        <button type="submit" name="signup" id="signup">Submit</button>
-        <button type="reset" name="cancels" id="cancels">Reset</button>
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="male"> Male </br>
+        <input type="radio" id="female" name="gender" value="female"> Female </br>
+        <input type="radio" id="other" name="gender" value="other"> Other
+        <label>Hobbies:</label>
+        <input type="checkbox" id="programming" name="hobbies" value="Programming"> Programming</br>
+        <input type="checkbox" id="cricket" name="hobbies" value="Cricket"> Cricket </br>
+        <input type="checkbox" id="football" name="hobbies" value="Football"> Football </br>
+        <input type="checkbox" id="reading" name="hobbies" value="Reading Novel"> Reading Novel
+        <label for="phone">Phone:
+            <input type="text" id="phone" name="phone"><label for="address">Address:</label><textarea id="address"
+                name="address" rows="4" cols="50"></textarea>
+        </label>
+        <label for="email">Email:
+            <input type="email" id="email" name="email"></label>
+        <label for="password">Password:
+            <input type="password" id="password" name="password"></label>
+        </br>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
     </form>
+    <script>
+        function validateForm() {
+            let firstname = document.getElementById("firstname").value;
+            let lastname = document.getElementById("lastname").value;
+            let course = document.getElementById("course").value;
+            let gender = document.querySelector('input[name="gender"]:checked');
+            let phone = document.getElementById("phone").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            if (firstname == "" || lastname == "" || course == "" || !gender || phone == "" || email == "" || password == "") {
+                alert("Please fill out all required fields.");
+                return false;
+            }
+            if (phone.length != 10 || isNaN(phone)) {
+                alert("Please enter a valid 10-digit phone number.");
+                return false;
+            }
+            if (!email.includes("@")) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+            return true;
+        }
+    </script
 </body>
-
 </html>
